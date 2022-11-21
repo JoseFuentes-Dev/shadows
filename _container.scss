@@ -1,0 +1,112 @@
+
+@mixin dimension ($wit, $heig){
+    width: $wit;
+    height: $heig;
+}
+@mixin pos ($lef, $bott){
+    bottom: $bott;
+    left: $lef;
+}
+@mixin transform ($value, $ori){
+    transform: skewY($value);
+    transform-origin: $ori;
+}
+$filter: blur(10px);    
+$back: rgba(#000, 0.3);
+$posia: absolute;
+$posir:relative;
+
+.container{
+ @include display(flex, column);
+ position: $posir;
+     
+   .box{
+    position: $posir;
+    @include dimension(300px, 200px );
+    display: flex;
+    margin: 40px 0;
+    place-items: center;
+    font-size: 2.5em;
+    background: white;
+    color: rgba(#000, 0.1);
+
+      &.shadow1{
+        box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+      }
+      &.shadow2{
+        &:before{
+           content: '';
+           position: $posia;
+           @include pos(10% , 10px );
+           @include dimension(90%, 50px );
+           background: $back;
+           @include transform(5deg, left);
+           z-index: -1;
+           filter: blur(5px);
+        }
+      }
+      &.shadow3{
+        &:before{
+            content: '';
+            position: $posia;
+            @include pos(0, 0);
+            @include dimension(50%, 30px );
+            @include transform(-8deg, right);
+            background: $back;
+            filter: $filter;
+            z-index: -1;
+        }
+        &:after{
+          content: '';
+          position: $posia;
+          bottom: 0px;
+          right: 0%;
+          @include dimension(50%, 30px );
+          background: $back;
+          @include transform(8deg, left );
+          z-index: -1;
+          filter: $filter;
+        }
+      }
+      &.shadow4{
+        &:before{
+          content: '';
+          position: $posia;
+           @include pos(5%, -50px);
+           @include dimension(90%,20px );
+           background: $back;
+           border-radius: 50%;
+           z-index: -1;
+           filter: $filter;
+        }
+
+      }
+      &.shadow5{
+        &:before{
+          content: '';
+          position: $posia;
+          @include pos(5%, -15% );
+          @include dimension(90%, 90% );
+          background: $back;
+          z-index: -1;
+          filter: $filter;
+        }
+      }
+
+      &.shadow6{
+        background:goldenrod ;
+        border-radius: 15px;
+        box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
+        15px 15px 15px rgba(0, 0, 0, 0.1);
+      }
+      &.shadow7{
+        background:goldenrod ;
+        border-radius: 15px;
+        box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
+        15px 15px 15px rgba(0, 0, 0, 0.1),
+        inset -5px -5px 5px rgba(255, 255, 255, 0.2),
+        inset 5px 5px 5px rgba(0, 0, 0, 0.1);
+      }
+
+   }
+ }

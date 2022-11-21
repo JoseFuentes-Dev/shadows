@@ -1,0 +1,14 @@
+@mixin display($dis, $dir) {
+    display: $dis;
+    flex-direction: $dir;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    @include display(flex, column );
+    min-height: 100vh;
+    background-color: goldenrod;
+    place-items: center;
+}
